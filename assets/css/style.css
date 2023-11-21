@@ -1,0 +1,7 @@
+.card{
+    height:350px;
+}
+.card-body{
+    overflow: auto;
+
+}
