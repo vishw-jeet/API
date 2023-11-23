@@ -6,15 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 		<link rel="stylesheet" href="./assets/css/style.css">
-
     <title>API XHR_HTTP</title>
 </head>
 <body>
-  <h1>HTTP-XHR</h1>
+  <h1 class="header text-center p-4 mb-3">HTTP-XHR</h1>
   <div class="container">
-    <div class="row" id="postcards">
-      <!-- <div class="col-md-6 offset-md-3">
-          <div class="postcard">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card mb-3">
+          <div class="card-body">
+            <form id="form">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text"id="title"class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="body">Body</label>
+                <textarea name="" id="body" cols="50" rows="4"class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="userId">userid</label>
+                <select name="" id="userId" class="form-control">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <div class="text-right">
+                <button type="submit" class="btn btn-outline-primary" id="AddBtn">Add post</button>
+                <button type="button" class="btn btn-outline-primary d-none" id="UpdateBtn">Update Post</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+       <div class="col-md-6 offset-md-3 d-flex flex-column-reverse"id="postcards">
+           <!-- <div class="postcard">
             <div class="card-header">
               <h2>Title</h2>
             </div>
@@ -25,11 +63,11 @@
                 </p>
             </div>
             <div class="card-footer d-flex justify-content-between">
-              <button class="btn btn-outline-primary">Update</button>
+              <button class="btn btn-outline-primary">Edit</button>
               <button class="btn btn-outline-danger">Delete</button>
             </div>
-          </div>
-      </div> -->
+          </div>  -->
+      </div> 
     </div>
   </div>
     
