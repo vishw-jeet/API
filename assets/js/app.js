@@ -30,6 +30,7 @@ const creatPost=(ele)=>{
 
 const onEditBtn=(eve)=>{
     let getEditId=eve.closest(".card").id
+    localStorage.setItem("editId",getEditId);
     // cl(getEditId)
     let getEditedObjUrl=`${baseUrl}/posts/${getEditId}`
     // cl(getEditedObj)
@@ -45,14 +46,47 @@ const onEditBtn=(eve)=>{
             bodyContainer.value=getEditedObj.body,
             userIdContainer.value=getEditedObj.userId
 
-            AddBtn.classList.add("d-none");
-            UpdateBtn.classList.remove("d-none");
+            AddBtn.classList.toggle("d-none");
+            UpdateBtn.classList.toggle("d-none");
          
         }else{
 
         }
     }
 }
+
+const onUpdatePost=()=>{
+    let updatedObj={
+        title:titleContainer.value,
+        body:bodyContainer.value,
+        userId:userIdContainer.value
+       
+    }
+    cl(updatedObj)
+    let getEditedId=localStorage.getItem("editId");
+    //  cl(getEditedId);
+    let updateUrl=`${baseUrl}/posts/${getEditedId}`
+    // cl(updateUrl)
+    let xhr=new XMLHttpRequest();
+    xhr.open("PATCH",updateUrl,true);
+    xhr.send(JSON.stringify(updatedObj));
+    xhr.onload=()=>{
+        if(xhr.status===200){
+            let getpostIndexOf=postArry.findIndex(post=>{
+                return post.id == getEditedId
+            })
+            cl(getpostIndexOf)
+            postArry[getpostIndexOf].title=updatedObj.title,
+            postArry[getpostIndexOf].body=updatedObj.body,
+            postArry[getpostIndexOf].userId=updatedObj.userId,
+        
+            templeting(postArry);
+            AddBtn.classList.toggle("d-none");
+            UpdateBtn.classList.toggle("d-none");
+            formContainer.reset();
+        }
+        
+    }}
 let templeting=(ele)=>{
     let result="";
     ele.forEach(post => {
@@ -108,3 +142,4 @@ xhr.onload=function(){
 }
 getAllPosts();
 formContainer.addEventListener("submit",onsubmitHandler);
+UpdateBtn.addEventListener("click",onUpdatePost)
