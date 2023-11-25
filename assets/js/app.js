@@ -87,6 +87,27 @@ const onUpdatePost=()=>{
         }
         
     }}
+    const onDeleteBtn=(eve)=>{
+        let getDeleteId=eve.closest(".card").id;
+        // cl(getDeleteId)
+        let getDeleteUrl=`${baseUrl}/posts/${getDeleteId}`;
+        cl(getDeleteUrl);
+
+        let xhr=new XMLHttpRequest();
+        xhr.open("DELETE",getDeleteUrl);
+
+        xhr.send();
+        
+        xhr.onload=function(){
+            if(xhr.status ===200){
+                cl(xhr.response)
+                let deletecard=document.getElementById(getDeleteId);
+                cl(deletecard)
+                deletecard.remove();
+            }
+        }
+    }
+
 let templeting=(ele)=>{
     let result="";
     ele.forEach(post => {
@@ -99,7 +120,7 @@ let templeting=(ele)=>{
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <button class="btn btn-outline-primary" onclick="onEditBtn(this)">Edit</button>
-                        <button class="btn btn-outline-danger">Delete</button>
+                        <button class="btn btn-outline-danger"onclick="onDeleteBtn(this)">Delete</button>
                     </div>
                     </div>`
     });
